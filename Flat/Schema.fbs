@@ -1,0 +1,58 @@
+namespace Schema; // Thay đổi tên không gian tên theo nhu cầu của bạn
+table GeometryBuffer {
+    uuid: string;
+    position: [double];
+    uv: [double];
+}
+table ImageBuffer {
+    uuid: string;
+    url: string;
+}
+
+table MaterialBuffer {
+  color: string;
+  opacity:double;
+  transparent:bool;
+  name:string;
+  map:string;
+  uuid:string;
+}
+
+table TextureBuffer {
+    image: string;
+    repeat: [int];
+    wrap: [int];
+    uuid: string;
+}
+table ChildItemBuffer {
+    geometry: string;
+    material: string;
+    name: string;
+    uuid: string;
+}
+table ObjectItemBuffer {
+    children: [ChildItemBuffer];
+    data: string;
+}
+table RoomBuffer {
+    uuid: string;
+    name: string;
+    data: string;
+    geometry: GeometryBuffer;
+}
+
+table RevitSchemaBuffer {
+    geometries: [GeometryBuffer];
+    materials: [MaterialBuffer];
+    images: [ImageBuffer];
+    textures: [TextureBuffer];
+    objects:[ObjectItemBuffer];
+    elementtypes:[string];
+    levels:[string];
+    drawings:[string];
+    info:string;
+    drawingurl:string;
+    rooms:[RoomBuffer];
+}
+
+root_type RevitSchemaBuffer;
